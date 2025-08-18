@@ -6,7 +6,7 @@ const TrackList = (props) => {
       <h1>Track List</h1>
       <div>
         {!props.tracks.length ? (
-          <h2>No Tracks Yet</h2>
+          <h2>No Tracks Yet!</h2>
         ) : (
           <ul>
             {props.tracks.map((track) => (
@@ -21,6 +21,9 @@ const TrackList = (props) => {
           </ul>
         )}
       </div>
+      <button onClick={props.handleFormView}>
+        {props.isFormOpen ? 'Close Form' : 'Add Track'}
+      </button>
     </div>
   );
 };
