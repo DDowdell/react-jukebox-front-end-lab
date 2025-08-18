@@ -53,6 +53,21 @@ const App = () => {
     }
   };
 
+  const handleDeleteTrack = async (trackId) => {
+    try {
+      const deletedTrack = await trackService.deleteTrack(trackId);
+
+      if (deletedTrack.err) {
+        throw new Error(deletedTrack.err);
+      }
+      setTracks(tracks.filter((track) => track._id !== deletedTrack._id));
+      setSelected(null);
+      setIsFormOpen(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     const fetchTracks = async () => {
       try {
@@ -83,7 +98,11 @@ const App = () => {
         handleUpdateTrack={handleUpdateTrack}
         />
       ) : (
-        <TrackDetail selected={selected} handleFormView={handleFormView} />
+        <TrackDetail 
+        selected={selected} 
+        handleFormView={handleFormView}
+        handleDeleteTrack={handleDeleteTrack}
+        />
       )}
     </>
   )
