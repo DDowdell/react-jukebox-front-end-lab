@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import * as trackService from './services/trackService.js'
 import TrackList from './components/TrackList/TrackList.jsx';
 import TrackDetail from './components/TrackDetail/TrackDetail.jsx';
-import TrackForm from './components/TrackForm/TrackForm.jsx';
+import TrackForm from './components/TrackForm/TrackForm';
 
 const App = () => {
   const [tracks, setTracks] = useState([]);
@@ -16,8 +16,22 @@ const App = () => {
     setIsFormOpen(false);
   };
 
-    const handleFormView = () => {
+  const handleFormView = () => {
     setIsFormOpen(!isFormOpen);
+  };
+
+  const handleAddTrack = async (formData) => {
+    try {
+      const newTrack = await trackService.create(formData);
+
+      if (newTrack.err) {
+        throw new Error(newTrack.err);
+      }
+      setTracks([newTrack, ...tracks]);
+      setIsFormOpen(false);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
@@ -37,14 +51,14 @@ const App = () => {
 
   return (
     <>
-      <TrackList 
-      tracks={tracks} 
-      handleSelect={handleSelect}
-      handleFormView={handleFormView}
-      isFormOpen={isFormOpen}
+      <TrackList
+        tracks={tracks}
+        handleSelect={handleSelect}
+        handleFormView={handleFormView}
+        isFormOpen={isFormOpen}
       />
       {isFormOpen ? (
-        <TrackForm />
+        <TrackForm handleAddTrack={handleAddTrack} />
       ) : (
         <TrackDetail selected={selected} />
       )}

@@ -8,13 +8,19 @@ const TrackForm = (props) => {
   });
 
   const handleChange = (evt) => {
-    setFormData({ ...formData, [evt.target.title]: evt.target.value });
+    setFormData({ ...formData, [evt.target.name]: evt.target.value });
   };
 
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    props.handleAddTrack(formData);
+  };
+
+  
   return (
     <div>
-      <form>
-        <label htmlFor="title">Title: </label>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="title"> Title: </label>
         <input
           id="title"
           name="title"
@@ -22,7 +28,7 @@ const TrackForm = (props) => {
           onChange={handleChange}
           required
         />
-        <label htmlFor="artist">Artist: </label>
+        <label htmlFor="artist"> Artist: </label>
         <input
           id="artist"
           name="artist"
@@ -30,7 +36,7 @@ const TrackForm = (props) => {
           onChange={handleChange}
           required
         />
-        <label htmlFor="album">Album: </label>
+        <label htmlFor="album"> Album: </label>
         <input
           id="album"
           name="album"
