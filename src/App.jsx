@@ -3,9 +3,15 @@
 import { useState, useEffect } from 'react';
 import * as trackService from './services/trackService.js'
 import TrackList from './components/TrackList/TrackList.jsx';
+import TrackDetail from './components/TrackDetail/TrackDetail.jsx';
 
 const App = () => {
   const [tracks, setTracks] = useState([]);
+  const [selected, setSelected] = useState(null)
+
+  const handleSelect = (track) => {
+    setSelected(track)
+  }
 
   useEffect(() => {
     const fetchTracks = async () => {
@@ -22,10 +28,10 @@ const App = () => {
     fetchTracks();
   }, []);
 
-
   return (
     <>
-      <TrackList tracks={tracks} />
+      <TrackList tracks={tracks} handleSelect={handleSelect} />
+      <TrackDetail selected={selected} />
     </>
   )
 };

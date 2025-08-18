@@ -1,22 +1,28 @@
 const TrackList = (props) => {
-    //   console.log(props);
+  // console.log(props);
 
-    return (
-        <div>
-            <h1>Track List</h1>
-            <div>
-                {!props.tracks.length ? (
-                    <h2>No Tracks Yet</h2>
-                ) : (
-                    <ul>
-                        {props.tracks.map((track) => (
-                            <li key={track._id}>{track.name}</li>
-                        ))}
-                    </ul>
-                )}
-            </div>
-        </div>
-    );
+  return (
+    <div>
+      <h1>Track List</h1>
+      <div>
+        {!props.tracks.length ? (
+          <h2>No Tracks Yet</h2>
+        ) : (
+          <ul>
+            {props.tracks.map((track) => (
+              <li
+                key={track._id}
+                style={{ cursor: 'pointer', color: "#f40303ff" }}
+                onClick={() => props.handleSelect(track)}
+              >
+                {track.title}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default TrackList;
