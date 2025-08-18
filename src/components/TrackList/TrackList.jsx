@@ -1,6 +1,4 @@
 const TrackList = (props) => {
-  // console.log(props);
-
   return (
     <div>
       <h1>Track List</h1>
@@ -10,18 +8,23 @@ const TrackList = (props) => {
         ) : (
           <ul>
             {props.tracks.map((track) => (
-              <li
-                key={track._id}
-                style={{ cursor: 'pointer', color: "#f40303ff" }}
-                onClick={() => props.handleSelect(track)}
-              >
-                {track.title}
+              <li key={track._id} style={{ marginBottom: '10px' }}>
+                <span style={{ cursor: 'pointer', color: "#f40303ff" }} 
+                  onClick={() => props.handleSelect(track)}>
+                  {track.title}
+                </span>
+                <button className="play-button"
+                  onClick={() => props.handlePlayButton(track)}
+                  style={{ marginLeft: '10px' }}
+                  >
+                  Play
+                </button>
               </li>
             ))}
           </ul>
         )}
       </div>
-      <button onClick={props.handleFormView}>
+      <button className="button" onClick={props.handleFormView}>
         {props.isFormOpen ? 'Close Form' : 'Add Track'}
       </button>
     </div>

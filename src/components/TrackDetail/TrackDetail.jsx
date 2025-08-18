@@ -15,10 +15,10 @@ const TrackDetail = (props) => {
       <h3>Album: {props.selected.album}</h3>
     </div>
     <div>
-      <button onClick={() => props.handleFormView(props.selected)}>
+      <button className="button" onClick={() => props.handleFormView(props.selected)}>
         Edit Track
       </button>
-      <button onClick={() => props.handleDeleteTrack(props.selected._id)}>
+      <button className="button" onClick={() => props.handleDeleteTrack(props.selected._id)}>
           Delete Track
       </button>
     </div>

@@ -51,7 +51,8 @@ return (
         value={formData.album}
         onChange={handleChange}
       />
-      <button type="submit">
+      
+      <button className="button" type="submit">
         {props.selected ? 'Update Track' : 'Add New Track'}
       </button>
     </form>
