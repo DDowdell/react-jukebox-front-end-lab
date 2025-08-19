@@ -1,32 +1,21 @@
-const TrackList = (props) => {
+const TrackList = ({ tracks, handleSelect, handleFormView, handlePlayButton, handleDeleteTrack }) => {
   return (
     <div>
-      <h1>Track List</h1>
-      <div>
-        {!props.tracks.length ? (
-          <h2>No Tracks Yet!</h2>
-        ) : (
-          <ul>
-            {props.tracks.map((track) => (
-              <li key={track._id} style={{ marginBottom: '10px' }}>
-                <span style={{ cursor: 'pointer', color: "#f40303ff" }} 
-                  onClick={() => props.handleSelect(track)}>
-                  {track.title}
-                </span>
-                <button className="play-button"
-                  onClick={() => props.handlePlayButton(track)}
-                  style={{ marginLeft: '10px' }}
-                  >
-                  Play
-                </button>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-      <button className="button" onClick={props.handleFormView}>
-        {props.isFormOpen ? 'Close Form' : 'Add Track'}
-      </button>
+      <h2>Track List</h2>
+      {tracks.length === 0 ? (
+        <p>No tracks yet!</p>
+      ) : (
+        tracks.map((track) => (
+          <div key={track._id}>
+            <h3>{track.title} - {track.artist}</h3>            
+            <div className="button-container">
+              <button className="button" onClick={() => handlePlayButton(track)}>Play</button>
+              <button className="button" onClick={() => { handleSelect(track); handleFormView(track); }}>Edit</button>
+              <button className="button" onClick={() => handleDeleteTrack(track._id)}>Delete</button>
+            </div>
+          </div>
+        ))
+      )}
     </div>
   );
 };

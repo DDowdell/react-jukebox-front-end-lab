@@ -15,7 +15,7 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #d94602;
   text-decoration: inherit;
 }
 a:hover {
@@ -25,25 +25,37 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
   justify-content: center;
+  align-items: center;
 }
 
 h1 {
+  display: flex;
+  justify-content: center;
   font-size: 3.2em;
   line-height: 1.1;
 }
 
-.button {
+h2 {
+  display: flex;
+  justify-content: center;
+}
+
+h3 {
+  display: flex;
+  justify-content: center;
+}
+
+button {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  margin-top: 20px;
+  justify-content: center;
+  margin: 0.7%;
   border-radius: 8px;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  padding: 0.2em 0.7em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
@@ -51,33 +63,29 @@ h1 {
   cursor: pointer;
   transition: border-color 0.25s;
 }
-.button:hover {
+button:hover {
   border-color: #646cff;
 }
-.button:focus,
-.button:focus-visible {
+button:focus,
+button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: -20px;
 }
 
 form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
+  gap: 10px;
 }
-
-.play-button {
-border-radius: 5px;
-  border: 1px solid transparent;
-  padding: 0.3em 1.2em;
-  font-size: 12px;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-.play-button:hover {
-  border-color: #646cff;
+.form-box {
+  display: flex;
+  flex-direction: column;
 }
 
 @media (prefers-color-scheme: light) {
@@ -88,7 +96,7 @@ border-radius: 5px;
   a:hover {
     color: #747bff;
   }
-  button {
-    background-color: #f9f9f9;
+.button {
+    background-color: #eb0707;
   }
 }
